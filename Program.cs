@@ -1,76 +1,59 @@
-﻿namespace Struct_Kavramı;
+﻿using System;
 
-class Program
+namespace Structconcept
 {
-    static void Main(string[] args)
+    class Program
     {
-        Dikdörtgen dikdörtgen = new Dikdörtgen();
-        dikdörtgen.kisakenar = 3;
-        dikdörtgen.uzunkenar = 4;
-        Console.WriteLine("Class Alan Hesabı      :{0}", dikdörtgen.Alanhesapla());
-        Dikdörtgen_struct dikdörtgen_Struct;/*Classtaki gibi new ile oluşturmaya gerek duyulmuyor
-        bunun yerine //Dikdörtgen_struct dikdörtgen_Struct; olabilir.//*/
-        dikdörtgen_Struct.kisakenar = 5;
-        dikdörtgen_Struct.uzunkenar = 6;
-        Console.WriteLine("Struct Alan Hesabı:    :{0}", dikdörtgen_Struct.Alanhesapla());
-        /* Structlarda kurucu metot yardımı ile alan hesaplama işleminde kullanıcak olan sayıları yukarıdaki
-        örnekteki gibi tek tek yazmak yerine direkt olarak Dikdörtgen_struct dikdörtgen_Struct = new Diktörtgen_Struct(3,4) olarak atayabilirim*/
-       
-       
+        static void Main(string[] args)
+        {
+            // Using the Class
+            Rectangle rectangle = new Rectangle();
+            rectangle.ShortSide = 3;
+            rectangle.LongSide = 4;
+            Console.WriteLine("Class Area Calculation : {0}", rectangle.CalculateArea());
 
-        
+            // Using the Struct
+            RectangleStruct rectangleStruct; // No need to use 'new' keyword for initialization in a struct
+            rectangleStruct.ShortSide = 5;
+            rectangleStruct.LongSide = 6;
+            Console.WriteLine("Struct Area Calculation: {0}", rectangleStruct.CalculateArea());
 
+            // Alternatively, you can use a struct constructor for a cleaner initialization
+            RectangleStruct rectangleStructWithConstructor = new RectangleStruct(3, 4);
+            Console.WriteLine("Struct Area with Constructor: {0}", rectangleStructWithConstructor.CalculateArea());
+        }
     }
-}
 
+    // Class representing a rectangle
+    class Rectangle
+    {
+        public int ShortSide;
+        public int LongSide;
 
-class Dikdörtgen
-{
+        // Method to calculate the area of the rectangle
+        public long CalculateArea()
+        {
+            return this.ShortSide * this.LongSide;
+        }
+    }
 
-  public int kisakenar;
-  
-  public int uzunkenar;
+    // Struct representing a rectangle
+    struct RectangleStruct
+    {
+        public int ShortSide;
+        public int LongSide;
 
+        // Constructor for initializing the struct with values
+        public RectangleStruct(int shortSide, int longSide)
+        {
+            ShortSide = shortSide;
+            LongSide = longSide;
+        }
 
-  public long Alanhesapla()
-  {
-   
-    return this.kisakenar * this.uzunkenar;
-
-  }
-
-
-}
-
-
-struct Dikdörtgen_struct
-{
-  
-  public int kisakenar;
-  
-  public int uzunkenar;
-
-  public Dikdörtgen(int kisaKenar, int uzunKenar)
-  {
-  kisakenar = kisaKenar;
-  uzunkenar = uzunKenar;
-  }
-
-  /*Structlarda kurucu metot şu şekilde olur 
-  Public Dikdörtgen(int kisakenar, int uzunKenar)
-  {
-  KisaKenar = kisakenar;
-  UzunKenar = uzun kenar; şeklinde olmalı buna(kurucu metota) izin veriyor.
-  }       */
-  
-
-  public long Alanhesapla()
-  {
-   
-    return this.kisakenar * this.uzunkenar;
-
-  }
-
-
-
+        // Method to calculate the area of the rectangle
+        public long CalculateArea()
+        {
+            return this.ShortSide * this.LongSide;
+        }
+    }
 }
